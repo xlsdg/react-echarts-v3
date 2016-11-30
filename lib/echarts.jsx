@@ -1,5 +1,5 @@
 import ECharts from 'echarts/lib/echarts';
-import Wrapper from './wrapper';
+import Wrapper from './wrapper.jsx';
 
-const IECharts = wrapper(ECharts);
+const IECharts = Wrapper(ECharts);
 export default IECharts;
