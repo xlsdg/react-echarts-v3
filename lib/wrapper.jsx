@@ -66,6 +66,7 @@ function wrapECharts(ECharts) {
     }
     _bind(instance) {
       const that = this;
+      // console.log('_bind');
       const _on = function(name, func) {
         if (typeof func === 'function') {
           instance.off(name, func);
