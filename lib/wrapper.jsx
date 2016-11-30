@@ -36,7 +36,7 @@ function wrapECharts(ECharts) {
           // init: false
           instance: instance
         });
-        onReady(instance);
+        that.props.onReady(instance);
       }
     }
     _update() {
