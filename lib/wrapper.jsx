@@ -28,6 +28,9 @@ function wrapECharts(ECharts) {
         if (!instance) {
           instance = ECharts.init(dom, that.props.theme);
         }
+        if (that.props.loading) {
+          instance.showLoading();
+        }
         ResizeEvent(dom, that._resize);
         that.setState({
           // init: false
