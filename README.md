@@ -4,7 +4,7 @@ React component wrap for ECharts(v3.x)
 
 ## Feature
 
-轻量，更好的效率，支持拖拽布局
+轻量，更高的效率，支持拖拽布局，支持按需引入 ECharts 的图表和组件。
 
 ![Screen.gif](screen.gif)
 
