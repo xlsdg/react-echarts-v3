@@ -102,7 +102,8 @@ return (
 );
 ```
 
-## Properties
+
+## propTypes
 
 ``` javascript
     className:  React.PropTypes.string,
@@ -112,10 +113,25 @@ return (
     notMerge:   React.PropTypes.bool,
     lazyUpdate: React.PropTypes.bool,
     onReady:    React.PropTypes.func,
-    loading:    React.PropTypes.bool
+    loading:    React.PropTypes.bool,
+    onEvents:   React.PropTypes.object
 ```
 
 [Read More](http://echarts.baidu.com/option.html)
+
+
+## defaultProps
+
+``` javascript
+    className: 'react-echarts',
+    style: { width: '100%', height: '100%' },
+    notMerge: false,
+    lazyUpdate: false,
+    onReady: function(instance) {},
+    loading: false,
+    onEvents: {}
+```
+
 
 # License
 
