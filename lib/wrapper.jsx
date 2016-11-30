@@ -91,10 +91,12 @@ function wrapECharts(ECharts) {
     componentWillReceiveProps(nextProps) {
       const that = this;
       // console.log('componentWillReceiveProps', that.props, nextProps);
-      if (nextProps.loading) {
-        that.state.instance.showLoading();
-      } else {
-        that.state.instance.hideLoading();
+      if (that.state.instance && (that.props.loading !== nextProps.loading)) {
+        if (nextProps.loading) {
+          that.state.instance.showLoading();
+        } else {
+          that.state.instance.hideLoading();
+        }
       }
     }
     shouldComponentUpdate(nextProps, nextState) {
