@@ -16,6 +16,7 @@ function wrapECharts(ECharts) {
       this._update = this._update.bind(this);
       this._resize = this._resize.bind(this);
       this._getInstance = this._getInstance.bind(this);
+      this._bind = this._bind.bind(this);
     }
     _init() {
       const that = this;
@@ -31,6 +32,7 @@ function wrapECharts(ECharts) {
         if (that.props.loading) {
           instance.showLoading();
         }
+        that._bind(instance);
         ResizeEvent(dom, that._resize);
         that.setState({
           // init: false
@@ -61,6 +63,20 @@ function wrapECharts(ECharts) {
       const that = this;
       // console.log('_getInstance');
       return ECharts.getInstanceByDom(ReactDOM.findDOMNode(that));
+    }
+    _bind(instance) {
+      const that = this;
+      const _on = function(name, func) {
+        if (typeof func === 'function') {
+          instance.off(name, func);
+          instance.on(name, func);
+        }
+      };
+      for (let e in that.props.onEvents) {
+        if (Array.hasOwnProperty.call(that.props.onEvents, e)) {
+          _on(e.toLowerCase(), that.props.onEvents[e]);
+        }
+      }
     }
     componentWillMount() {
       const that = this;
@@ -124,7 +140,8 @@ function wrapECharts(ECharts) {
     notMerge: React.PropTypes.bool,
     lazyUpdate: React.PropTypes.bool,
     onReady: React.PropTypes.func,
-    loading: React.PropTypes.bool
+    loading: React.PropTypes.bool,
+    onEvents: React.PropTypes.object
   };
 
   IECharts.defaultProps = {
@@ -133,7 +150,8 @@ function wrapECharts(ECharts) {
     notMerge: false,
     lazyUpdate: false,
     onReady: function(instance) {},
-    loading: false
+    loading: false,
+    onEvents: {}
   };
 
   return IECharts;
