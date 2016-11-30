@@ -4,7 +4,7 @@ React component wrap for ECharts(v3.x)
 
 ## Feature
 
-轻量，更高的效率，支持拖拽布局，支持按需引入 ECharts 的图表和组件。
+轻量，更高的效率，支持按需引入 ECharts 的图表和组件，配合[react-grid-layout](https://github.com/STRML/react-grid-layout)支持拖拽布局。
 
 ![Screen.gif](screen.gif)
 
