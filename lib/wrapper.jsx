@@ -26,22 +26,23 @@ function wrapECharts(ECharts) {
         const dom = ReactDOM.findDOMNode(that);
         let instance = ECharts.getInstanceByDom(dom);
         if (!instance) {
-          instance = ECharts.init(dom);
+          instance = ECharts.init(dom, that.props.theme);
         }
+        ResizeEvent(dom, that._resize);
         that.setState({
           // init: false
           instance: instance
         });
-        ResizeEvent(dom, that._resize);
+        onReady(instance);
       }
     }
     _update() {
       const that = this;
       // console.log('_update');
-      that.state.instance.setOption(that.props.option);
+      that.state.instance.setOption(that.props.option, that.props.notMerge, that.props.lazyUpdate);
       // const instance = that._getInstance()
       // if (instance) {
-      //   instance.setOption(that.props.option);
+      //   instance.setOption(that.props.option, that.props.notMerge, that.props.lazyUpdate);
       // }
     }
     _resize() {
@@ -70,6 +71,11 @@ function wrapECharts(ECharts) {
     componentWillReceiveProps(nextProps) {
       const that = this;
       // console.log('componentWillReceiveProps', that.props, nextProps);
+      if (nextProps.loading) {
+        that.state.instance.showLoading();
+      } else {
+        that.state.instance.hideLoading();
+      }
     }
     shouldComponentUpdate(nextProps, nextState) {
       const that = this;
@@ -92,28 +98,39 @@ function wrapECharts(ECharts) {
     componentWillUnmount() {
       const that = this;
       // console.log('componentWillUnmount');
-      that.state.instance.dispose(ReactDOM.findDOMNode(that));
+      that.state.instance.dispose();
       // const instance = that._getInstance()
       // if (instance) {
-      //   instance.dispose(ReactDOM.findDOMNode(that));
+      //   instance.dispose();
       // }
     }
     render() {
       const that = this;
       // console.log('render');
       return (
-        <div style={that.props.style}></div>
+        <div className={that.props.className} style={that.props.style}></div>
       );
     }
   }
 
   IECharts.propTypes = {
+    className: React.PropTypes.string,
+    style: React.PropTypes.object,
+    theme: React.PropTypes.string,
     option: React.PropTypes.object.isRequired,
-    style: React.PropTypes.object
+    notMerge: React.PropTypes.bool,
+    lazyUpdate: React.PropTypes.bool,
+    onReady: React.PropTypes.func,
+    loading: React.PropTypes.bool
   };
 
   IECharts.defaultProps = {
-    style: { width: '100%', height: '100%' }
+    className: 'react-echarts',
+    style: { width: '100%', height: '100%' },
+    notMerge: false,
+    lazyUpdate: false,
+    onReady: function(instance) {},
+    loading: false
   };
 
   return IECharts;

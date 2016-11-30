@@ -105,8 +105,14 @@ return (
 ## Properties
 
 ``` javascript
-    option: React.PropTypes.object.isRequired,
-    style:  React.PropTypes.object
+    className:  React.PropTypes.string,
+    style:      React.PropTypes.object,
+    theme:      React.PropTypes.string,
+    option:     React.PropTypes.object.isRequired,
+    notMerge:   React.PropTypes.bool,
+    lazyUpdate: React.PropTypes.bool,
+    onReady:    React.PropTypes.func,
+    loading:    React.PropTypes.bool
 ```
 
 [Read More](http://echarts.baidu.com/option.html)
