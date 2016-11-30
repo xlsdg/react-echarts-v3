@@ -15,7 +15,7 @@ $ npm install --save react-echarts-v3
 import IECharts from 'react-echarts-v3';
 
 return (
-    <IECharts option={geetest.gt} />
+    <IECharts option={option} />
 );
 ```
 
