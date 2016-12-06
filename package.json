@@ -2,7 +2,7 @@
   "name": "react-echarts-v3",
   "title": "react-echarts-v3",
   "description": "React component wrap for ECharts(v3.x)",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "main": "lib/index.jsx",
   "files": [
     "lib/index.jsx",
