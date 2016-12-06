@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import _isEqual from 'lodash.isequal';
 import ResizeEvent from 'element-resize-event';
 
+
 function wrapECharts(ECharts) {
   class IECharts extends React.Component {
     constructor(props) {
@@ -30,7 +31,7 @@ function wrapECharts(ECharts) {
           instance = ECharts.init(dom, that.props.theme);
         }
         if (that.props.loading) {
-          instance.showLoading();
+          instance.showLoading('default', that.props.optsLoading);
         }
         that._bind(instance);
         ResizeEvent(dom, that._resize);
@@ -81,11 +82,11 @@ function wrapECharts(ECharts) {
     }
     componentWillMount() {
       const that = this;
-      // console.log('componentWillMount');
+      // console.log('componentWillMount', that.props, that.state);
     }
     componentDidMount() {
       const that = this;
-      // console.log('componentDidMount');
+      // console.log('componentDidMount', that.props, that.state);
       that._init();
     }
     componentWillReceiveProps(nextProps) {
@@ -93,7 +94,7 @@ function wrapECharts(ECharts) {
       // console.log('componentWillReceiveProps', that.props, nextProps);
       if (that.state.instance && (that.props.loading !== nextProps.loading)) {
         if (nextProps.loading) {
-          that.state.instance.showLoading();
+          that.state.instance.showLoading('default', that.props.optsLoading);
         } else {
           that.state.instance.hideLoading();
         }
@@ -119,7 +120,7 @@ function wrapECharts(ECharts) {
     }
     componentWillUnmount() {
       const that = this;
-      // console.log('componentWillUnmount');
+      // console.log('componentWillUnmount', that.props, that.state);
       that.state.instance.dispose();
       // const instance = that._getInstance()
       // if (instance) {
@@ -144,6 +145,7 @@ function wrapECharts(ECharts) {
     lazyUpdate: React.PropTypes.bool,
     onReady: React.PropTypes.func,
     loading: React.PropTypes.bool,
+    optsLoading: React.PropTypes.object,
     onEvents: React.PropTypes.object
   };
 
@@ -154,6 +156,13 @@ function wrapECharts(ECharts) {
     lazyUpdate: false,
     onReady: function(instance) {},
     loading: false,
+    optsLoading: {
+      text: 'loading',
+      color: '#c23531',
+      textColor: '#000',
+      maskColor: 'rgba(255, 255, 255, 0.8)',
+      zlevel: 0
+    },
     onEvents: {}
   };
 

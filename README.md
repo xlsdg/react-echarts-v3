@@ -113,15 +113,16 @@ return (
 ## propTypes
 
 ``` javascript
-    className:  React.PropTypes.string,
-    style:      React.PropTypes.object,
-    theme:      React.PropTypes.string,
-    option:     React.PropTypes.object.isRequired,
-    notMerge:   React.PropTypes.bool,
-    lazyUpdate: React.PropTypes.bool,
-    onReady:    React.PropTypes.func,
-    loading:    React.PropTypes.bool,
-    onEvents:   React.PropTypes.object
+    className:    React.PropTypes.string,
+    style:        React.PropTypes.object,
+    theme:        React.PropTypes.string,
+    option:       React.PropTypes.object.isRequired,
+    notMerge:     React.PropTypes.bool,
+    lazyUpdate:   React.PropTypes.bool,
+    onReady:      React.PropTypes.func,
+    loading:      React.PropTypes.bool,
+    optsLoading:  React.PropTypes.object,
+    onEvents:     React.PropTypes.object
 ```
 
 [Read More](http://echarts.baidu.com/option.html)
@@ -136,6 +137,13 @@ return (
     lazyUpdate: false,
     onReady: function(instance) {},
     loading: false,
+    optsLoading: {
+        text: 'loading',
+        color: '#c23531',
+        textColor: '#000',
+        maskColor: 'rgba(255, 255, 255, 0.8)',
+        zlevel: 0
+    },
     onEvents: {}
 ```
 
