@@ -35,8 +35,15 @@ const option = {
     }]
 };
 
+const onEvents = {
+    'click': function(params) {
+        // the 'this' variable can get echarts instance
+        console.log(params);
+    }
+};
+
 return (
-    <IECharts option={option} />
+    <IECharts option={option} onEvents={onEvents} />
 );
 ```
 
