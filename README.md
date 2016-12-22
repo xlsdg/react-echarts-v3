@@ -1,5 +1,6 @@
 # react-echarts-v3
-React component wrap for ECharts(v3.x)
+
+> React.js component wrap for ECharts.js(v3.x+)
 
 
 ## Feature

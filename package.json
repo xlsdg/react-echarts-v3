@@ -1,13 +1,11 @@
 {
   "name": "react-echarts-v3",
   "title": "react-echarts-v3",
-  "description": "React component wrap for ECharts(v3.x)",
+  "description": "React.js component wrap for ECharts.js(v3.x+)",
   "version": "0.0.12",
   "main": "lib/index.jsx",
   "files": [
-    "lib/index.jsx",
-    "lib/echarts.jsx",
-    "lib/wrapper.jsx"
+    "lib"
   ],
   "homepage": "https://github.com/xlsdg/react-echarts-v3",
   "author": "xLsDg <xlsdg@qq.com> (https://blog.xlsdg.org/)",
