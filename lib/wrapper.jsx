@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import _isEqual from 'lodash.isequal';
-import ResizeEvent from 'element-resize-event';
+// import Resize from 'element-resize-event';
+import Resize from 'element-resize-detector';
 
 
 function wrapECharts(ECharts) {
@@ -11,6 +12,7 @@ function wrapECharts(ECharts) {
       super(props);
       this.state = {
         // init: true
+        resize: null,
         instance: null
       };
       this._init = this._init.bind(this);
@@ -28,18 +30,31 @@ function wrapECharts(ECharts) {
         const dom = ReactDOM.findDOMNode(that);
         let instance = ECharts.getInstanceByDom(dom);
         if (!instance) {
-          instance = ECharts.init(dom, that.props.theme);
+          instance = ECharts.init(dom, that.props.theme, that.props.initOpts);
         }
         if (that.props.loading) {
           instance.showLoading('default', that.props.optsLoading);
+        } else {
+          instance.hideLoading();
         }
+        instance.group = that.props.group;
         that._bind(instance);
-        ResizeEvent(dom, that._resize);
+        // Resize(dom, that._resize);
+        let resize = null;
+        if (that.props.resizable) {
+          resize = Resize({
+            strategy: 'scroll' // <- For ultra performance.
+          });
+          resize.listenTo(dom, function(element) {
+            that._resize();
+          });
+        }
+        that.props.onReady(instance);
         that.setState({
           // init: false
+          resize: resize,
           instance: instance
         });
-        that.props.onReady(instance);
       }
     }
     _update() {
@@ -104,7 +119,10 @@ function wrapECharts(ECharts) {
     shouldComponentUpdate(nextProps, nextState) {
       const that = this;
       // console.log('shouldComponentUpdate', that.props, nextProps, that.state, nextState);
-      return (!that.state.instance || !_isEqual(nextProps.option, that.props.option));
+      return (!that.state.instance
+        || !_isEqual(nextProps.option, that.props.option)
+        || (nextProps.group !== that.props.group)
+      );
       // return (that.state.init || !_isEqual(nextProps.option, that.props.option));
     }
     componentWillUpdate(nextProps, nextState) {
@@ -122,6 +140,10 @@ function wrapECharts(ECharts) {
     componentWillUnmount() {
       const that = this;
       // console.log('componentWillUnmount', that.props, that.state);
+      if (that.state.resize && that.state.resize.uninstall) {
+        const dom = ReactDOM.findDOMNode(that);
+        that.state.resize.uninstall(dom);
+      }
       that.state.instance.dispose();
       // const instance = that._getInstance()
       // if (instance) {
@@ -141,12 +163,15 @@ function wrapECharts(ECharts) {
     className: React.PropTypes.string,
     style: React.PropTypes.object,
     theme: React.PropTypes.string,
+    group: React.PropTypes.string,
     option: React.PropTypes.object.isRequired,
+    initOpts: React.PropTypes.object,
     notMerge: React.PropTypes.bool,
     lazyUpdate: React.PropTypes.bool,
-    onReady: React.PropTypes.func,
     loading: React.PropTypes.bool,
     optsLoading: React.PropTypes.object,
+    onReady: React.PropTypes.func,
+    resizable: React.PropTypes.bool,
     onEvents: React.PropTypes.object
   };
 
@@ -157,13 +182,7 @@ function wrapECharts(ECharts) {
     lazyUpdate: false,
     onReady: function(instance) {},
     loading: false,
-    optsLoading: {
-      text: 'loading',
-      color: '#c23531',
-      textColor: '#000',
-      maskColor: 'rgba(255, 255, 255, 0.8)',
-      zlevel: 0
-    },
+    resizable: false,
     onEvents: {}
   };
 

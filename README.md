@@ -123,12 +123,15 @@ return (
 ``` javascript
     className:    React.PropTypes.string,
     style:        React.PropTypes.object,
+    group:        React.PropTypes.string,
     theme:        React.PropTypes.string,
+    initOpts:     React.PropTypes.object,
     option:       React.PropTypes.object.isRequired,
     notMerge:     React.PropTypes.bool,
     lazyUpdate:   React.PropTypes.bool,
     onReady:      React.PropTypes.func,
     loading:      React.PropTypes.bool,
+    resizable:    React.PropTypes.bool,
     optsLoading:  React.PropTypes.object,
     onEvents:     React.PropTypes.object
 ```
@@ -145,6 +148,7 @@ return (
     lazyUpdate: false,
     onReady: function(instance) {},
     loading: false,
+    resizable: false,
     optsLoading: {
         text: 'loading',
         color: '#c23531',
