@@ -25,12 +25,12 @@
   },
   "license": "MIT",
   "dependencies": {
-    "echarts": "^3.3.2",
-    "element-resize-detector": "^1.1.10",
-    "element-resize-event": "^2.0.7",
-    "lodash.isequal": "^4.5.0",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "echarts": "latest",
+    "element-resize-detector": "latest",
+    "element-resize-event": "latest",
+    "lodash.isequal": "latest",
+    "react": "latest",
+    "react-dom": "latest"
   },
   "devDependencies": {},
   "scripts": {}
