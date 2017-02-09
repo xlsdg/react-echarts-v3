@@ -28,9 +28,10 @@
     "echarts": "latest",
     "element-resize-detector": "latest",
     "element-resize-event": "latest",
+    "lodash.debounce": "latest",
     "lodash.isequal": "latest",
-    "react": "latest",
-    "react-dom": "latest"
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
   },
   "devDependencies": {},
   "scripts": {}

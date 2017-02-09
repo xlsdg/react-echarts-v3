@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import _isEqual from 'lodash.isequal';
+import _debounce from 'lodash.debounce';
 // import Resize from 'element-resize-event';
 import Resize from 'element-resize-detector';
 
@@ -12,6 +13,7 @@ function wrapECharts(ECharts) {
       super(props);
       this.state = {
         // init: true
+        fnResize: null,
         resize: null,
         instance: null
       };
@@ -41,18 +43,24 @@ function wrapECharts(ECharts) {
         that._bind(instance);
         // Resize(dom, that._resize);
         let resize = null;
+        let fnResize = that.state.fnResize || _debounce(that._resize, 250, {
+          'leading': true,
+          'trailing': true
+        });
         if (that.props.resizable) {
-          resize = Resize({
+          resize = that.state.resize || Resize({
             strategy: 'scroll' // <- For ultra performance.
           });
           resize.listenTo(dom, function(element) {
-            that._resize();
+            // that._resize();
+            fnResize();
           });
         }
         that.props.onReady(instance);
         that.setState({
           // init: false
           resize: resize,
+          fnResize: fnResize,
           instance: instance
         });
       }
@@ -143,6 +151,9 @@ function wrapECharts(ECharts) {
       if (that.state.resize && that.state.resize.uninstall) {
         const dom = ReactDOM.findDOMNode(that);
         that.state.resize.uninstall(dom);
+      }
+      if (that.state.fnResize && that.state.fnResize.cancel) {
+        that.state.fnResize.cancel();
       }
       that.state.instance.dispose();
       // const instance = that._getInstance()
