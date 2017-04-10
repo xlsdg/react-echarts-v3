@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import _isEqual from 'lodash.isequal';
 import _debounce from 'lodash.debounce';
 // import Resize from 'element-resize-event';
@@ -105,7 +106,7 @@ function wrapECharts(ECharts) {
       }
     }
     componentWillMount() {
-      const that = this;
+      // const that = this;
       // console.log('componentWillMount', that.props, that.state);
     }
     componentDidMount() {
@@ -134,7 +135,7 @@ function wrapECharts(ECharts) {
       // return (that.state.init || !_isEqual(nextProps.option, that.props.option));
     }
     componentWillUpdate(nextProps, nextState) {
-      const that = this;
+      // const that = this;
       // console.log('componentWillUpdate', that.props, nextProps, that.state, nextState);
     }
     componentDidUpdate(prevProps, prevState) {
@@ -171,19 +172,19 @@ function wrapECharts(ECharts) {
   }
 
   IECharts.propTypes = {
-    className: React.PropTypes.string,
-    style: React.PropTypes.object,
-    theme: React.PropTypes.string,
-    group: React.PropTypes.string,
-    option: React.PropTypes.object.isRequired,
-    initOpts: React.PropTypes.object,
-    notMerge: React.PropTypes.bool,
-    lazyUpdate: React.PropTypes.bool,
-    loading: React.PropTypes.bool,
-    optsLoading: React.PropTypes.object,
-    onReady: React.PropTypes.func,
-    resizable: React.PropTypes.bool,
-    onEvents: React.PropTypes.object
+    className: PropTypes.string,
+    style: PropTypes.object,
+    theme: PropTypes.string,
+    group: PropTypes.string,
+    option: PropTypes.object.isRequired,
+    initOpts: PropTypes.object,
+    notMerge: PropTypes.bool,
+    lazyUpdate: PropTypes.bool,
+    loading: PropTypes.bool,
+    optsLoading: PropTypes.object,
+    onReady: PropTypes.func,
+    resizable: PropTypes.bool,
+    onEvents: PropTypes.object
   };
 
   IECharts.defaultProps = {
