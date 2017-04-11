@@ -24,6 +24,63 @@ function wrapECharts(ECharts) {
       this._getInstance = this._getInstance.bind(this);
       this._bind = this._bind.bind(this);
     }
+    // componentWillMount() {
+      // const that = this;
+      // console.log('componentWillMount', that.props, that.state);
+    // }
+    componentDidMount() {
+      const that = this;
+      // console.log('componentDidMount', that.props, that.state);
+      that._init();
+    }
+    componentWillReceiveProps(nextProps) {
+      const that = this;
+      // console.log('componentWillReceiveProps', that.props, nextProps);
+      if (that.state.instance && (that.props.loading !== nextProps.loading)) {
+        if (nextProps.loading) {
+          that.state.instance.showLoading('default', that.props.optsLoading);
+        } else {
+          that.state.instance.hideLoading();
+        }
+      }
+    }
+    shouldComponentUpdate(nextProps, nextState) {
+      const that = this;
+      // console.log('shouldComponentUpdate', that.props, nextProps, that.state, nextState);
+      return (!that.state.instance
+        || !_isEqual(nextProps.option, that.props.option)
+        || (nextProps.group !== that.props.group)
+      );
+      // return (that.state.init || !_isEqual(nextProps.option, that.props.option));
+    }
+    // componentWillUpdate(nextProps, nextState) {
+      // const that = this;
+      // console.log('componentWillUpdate', that.props, nextProps, that.state, nextState);
+    // }
+    componentDidUpdate(prevProps, prevState) {
+      const that = this;
+      // console.log('componentDidUpdate', prevProps, that.props, prevState, that.state);
+      if (that.props.option) {
+        that._update();
+        that._resize();
+      }
+    }
+    componentWillUnmount() {
+      const that = this;
+      // console.log('componentWillUnmount', that.props, that.state);
+      if (that.state.resize && that.state.resize.uninstall) {
+        const dom = ReactDOM.findDOMNode(that);
+        that.state.resize.uninstall(dom);
+      }
+      if (that.state.fnResize && that.state.fnResize.cancel) {
+        that.state.fnResize.cancel();
+      }
+      that.state.instance.dispose();
+      // const instance = that._getInstance()
+      // if (instance) {
+      //   instance.dispose();
+      // }
+    }
     _init() {
       const that = this;
       // console.log('_init');
@@ -105,68 +162,15 @@ function wrapECharts(ECharts) {
         }
       }
     }
-    componentWillMount() {
-      // const that = this;
-      // console.log('componentWillMount', that.props, that.state);
-    }
-    componentDidMount() {
-      const that = this;
-      // console.log('componentDidMount', that.props, that.state);
-      that._init();
-    }
-    componentWillReceiveProps(nextProps) {
-      const that = this;
-      // console.log('componentWillReceiveProps', that.props, nextProps);
-      if (that.state.instance && (that.props.loading !== nextProps.loading)) {
-        if (nextProps.loading) {
-          that.state.instance.showLoading('default', that.props.optsLoading);
-        } else {
-          that.state.instance.hideLoading();
-        }
-      }
-    }
-    shouldComponentUpdate(nextProps, nextState) {
-      const that = this;
-      // console.log('shouldComponentUpdate', that.props, nextProps, that.state, nextState);
-      return (!that.state.instance
-        || !_isEqual(nextProps.option, that.props.option)
-        || (nextProps.group !== that.props.group)
-      );
-      // return (that.state.init || !_isEqual(nextProps.option, that.props.option));
-    }
-    componentWillUpdate(nextProps, nextState) {
-      // const that = this;
-      // console.log('componentWillUpdate', that.props, nextProps, that.state, nextState);
-    }
-    componentDidUpdate(prevProps, prevState) {
-      const that = this;
-      // console.log('componentDidUpdate', prevProps, that.props, prevState, that.state);
-      if (that.props.option) {
-        that._update();
-        that._resize();
-      }
-    }
-    componentWillUnmount() {
-      const that = this;
-      // console.log('componentWillUnmount', that.props, that.state);
-      if (that.state.resize && that.state.resize.uninstall) {
-        const dom = ReactDOM.findDOMNode(that);
-        that.state.resize.uninstall(dom);
-      }
-      if (that.state.fnResize && that.state.fnResize.cancel) {
-        that.state.fnResize.cancel();
-      }
-      that.state.instance.dispose();
-      // const instance = that._getInstance()
-      // if (instance) {
-      //   instance.dispose();
-      // }
-    }
     render() {
       const that = this;
       // console.log('render');
+      const {
+        className, style
+      } = that.props;
+
       return (
-        <div className={that.props.className} style={that.props.style}></div>
+        <div className={className} style={style} />
       );
     }
   }
