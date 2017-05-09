@@ -193,7 +193,10 @@ function wrapECharts(ECharts) {
 
   IECharts.defaultProps = {
     className: 'react-echarts',
-    style: { width: '100%', height: '100%' },
+    style: {
+      width: '100%',
+      height: '100%'
+    },
     notMerge: false,
     lazyUpdate: false,
     onReady: function(instance) {},

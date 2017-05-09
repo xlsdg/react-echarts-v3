@@ -51,7 +51,7 @@ return (
 OR
 
 ``` javascript
-import IECharts from 'react-echarts-v3/lib/echarts';
+import IECharts from 'react-echarts-v3/lib/echarts.jsx';
 
 // Import all charts and components
 // require('echarts/lib/chart/line');

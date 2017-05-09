@@ -25,14 +25,14 @@
   },
   "license": "MIT",
   "dependencies": {
-    "echarts": "latest",
-    "element-resize-detector": "latest",
-    "element-resize-event": "latest",
-    "lodash.debounce": "latest",
-    "lodash.isequal": "latest",
-    "prop-types": "^15.5.6",
-    "react": "^15.5.3",
-    "react-dom": "^15.5.3"
+    "echarts": "^3.5.4",
+    "element-resize-detector": "^1.1.12",
+    "element-resize-event": "^2.0.9",
+    "lodash.debounce": "^4.0.8",
+    "lodash.isequal": "^4.5.0",
+    "prop-types": "^15.5.8",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
   },
   "devDependencies": {},
   "scripts": {}
