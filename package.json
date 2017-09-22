@@ -27,14 +27,10 @@
     "build": "webpack lib/index.js dist/react-echarts.js"
   },
   "dependencies": {
-    "echarts": "latest",
     "element-resize-detector": "latest",
     "element-resize-event": "latest",
     "lodash.debounce": "latest",
-    "lodash.isequal": "latest",
-    "prop-types": "latest",
-    "react": "latest",
-    "react-dom": "latest"
+    "lodash.isequal": "latest"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -43,6 +39,12 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "webpack": "^3.6.0"
+  },
+  "peerDependencies": {
+    "echarts": "*",
+    "prop-types": "*",
+    "react": "*",
+    "react-dom": "*"
   },
   "title": "react-echarts-v3"
 }

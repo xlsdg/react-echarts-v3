@@ -19,13 +19,13 @@ module.exports = {
       commonjs2: 'prop-types',
       commonjs: 'prop-types',
       amd: 'prop-types'
+    },
+    echarts: {
+      root: 'echarts',
+      commonjs2: 'echarts',
+      commonjs: 'echarts',
+      amd: 'echarts',
     }
-    // echarts: {
-    //   root: 'echarts',
-    //   commonjs2: 'echarts',
-    //   commonjs: 'echarts',
-    //   amd: 'echarts',
-    // }
   },
   output: {
     library: 'react-echarts',
