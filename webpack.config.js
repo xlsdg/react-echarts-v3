@@ -32,14 +32,14 @@ module.exports = {
     libraryTarget: 'umd'
   },
   plugins: [
+    // new webpack.SourceMapDevToolPlugin({
+    //   filename: '[file].map'
+    // }),
     new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
+      // sourceMap: true,
       compress: {
         warnings: false
       }
-    }),
-    new webpack.SourceMapDevToolPlugin({
-      filename: '[file].map'
     })
   ],
   module: {
