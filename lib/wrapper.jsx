@@ -114,7 +114,7 @@ function wrapECharts(ECharts) {
             fnResize();
           });
         }
-        that.props.onReady(instance);
+        that.props.onReady(instance, ECharts);
         that.setState({
           // init: false
           resize: resize,
