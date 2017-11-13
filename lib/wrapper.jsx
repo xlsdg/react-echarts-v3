@@ -18,11 +18,6 @@ function wrapECharts(ECharts) {
         resize: null,
         instance: null
       };
-      this._init = this._init.bind(this);
-      this._update = this._update.bind(this);
-      this._resize = this._resize.bind(this);
-      this._getInstance = this._getInstance.bind(this);
-      this._bind = this._bind.bind(this);
     }
     // componentWillMount() {
       // const that = this;
@@ -81,7 +76,7 @@ function wrapECharts(ECharts) {
       //   instance.dispose();
       // }
     }
-    _init() {
+    _init = () => {
       const that = this;
       // console.log('_init');
       // let instance = that._getInstance();
@@ -123,7 +118,7 @@ function wrapECharts(ECharts) {
         });
       }
     }
-    _update() {
+    _update = () => {
       const that = this;
       // console.log('_update');
       that.state.instance.setOption(that.props.option, that.props.notMerge, that.props.lazyUpdate);
@@ -132,7 +127,7 @@ function wrapECharts(ECharts) {
       //   instance.setOption(that.props.option, that.props.notMerge, that.props.lazyUpdate);
       // }
     }
-    _resize() {
+    _resize = () => {
       const that = this;
       // console.log('_resize');
       that.state.instance.resize();
@@ -141,12 +136,12 @@ function wrapECharts(ECharts) {
       //   instance.resize();
       // }
     }
-    _getInstance() {
+    _getInstance = () => {
       const that = this;
       // console.log('_getInstance');
       return ECharts.getInstanceByDom(ReactDOM.findDOMNode(that));
     }
-    _bind(instance) {
+    _bind = (instance) => {
       const that = this;
       // console.log('_bind');
       const _on = function(name, func) {
