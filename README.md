@@ -126,7 +126,7 @@ return (
 
 ``` javascript
     className:    React.PropTypes.string,
-    styles:       React.PropTypes.object,
+    style:        React.PropTypes.object,
     group:        React.PropTypes.string,
     theme:        React.PropTypes.string,
     initOpts:     React.PropTypes.object,
@@ -147,7 +147,7 @@ return (
 
 ``` javascript
     className: 'react-echarts',
-    styles: { width: '100%', height: '100%' },
+    style: { width: '100%', height: '100%' },
     notMerge: false,
     lazyUpdate: false,
     onReady: function(instance) {},
