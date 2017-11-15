@@ -13,7 +13,7 @@
 ## Installation
 
 ```
-$ npm install --save react-echarts-v3
+$ npm install --save echarts react-echarts-v3
 ```
 
 
