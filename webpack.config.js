@@ -1,6 +1,16 @@
+var path = require('path')
 var webpack = require('webpack');
 
 module.exports = {
+  entry: './src/full.js',
+  // devtool: 'source-map',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'react-echarts.js',
+    library: undefined,
+    libraryTarget: 'umd'
+    // umdNamedDefine: true
+  },
   externals: {
     react: {
       root: 'React',
@@ -27,21 +37,28 @@ module.exports = {
       amd: 'echarts',
     }
   },
-  output: {
-    library: 'react-echarts',
-    libraryTarget: 'umd'
-  },
   plugins: [
-    // new webpack.SourceMapDevToolPlugin({
-    //   filename: '[file].map'
-    // }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    }),
+    new webpack.SourceMapDevToolPlugin({
+      filename: '[file].map'
+    }),
     new webpack.optimize.UglifyJsPlugin({
-      // sourceMap: true,
+      sourceMap: true,
       compress: {
         warnings: false
       }
+    }),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true
     })
   ],
+  performance: {
+    hints: false
+  },
   module: {
     rules: [{
       test: /\.jsx?$/,

@@ -20,7 +20,7 @@ $ npm install --save react-echarts-v3
 ## Usage
 
 ``` javascript
-import IECharts from 'react-echarts-v3/lib/index.js';
+import IECharts from 'react-echarts-v3/src/index.js';
 
 const option = {
   title: {
@@ -53,7 +53,7 @@ return (
 OR
 
 ``` javascript
-import IECharts from 'react-echarts-v3/lib/echarts.js';
+import IECharts from 'react-echarts-v3/src/echarts.js';
 
 // Import all charts and components
 // require('echarts/lib/chart/line');

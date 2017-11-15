@@ -16,7 +16,8 @@
   "license": "MIT",
   "author": "xLsDg <xlsdg@qq.com> (https://blog.xlsdg.org/)",
   "files": [
-    "lib"
+    "dist",
+    "src"
   ],
   "main": "dist/react-echarts.js",
   "repository": {
@@ -24,7 +25,7 @@
     "url": "https://github.com/xlsdg/react-echarts-v3.git"
   },
   "scripts": {
-    "build": "webpack lib/index.js dist/react-echarts.js"
+    "build": "webpack --progress --hide-modules"
   },
   "dependencies": {
     "element-resize-detector": "latest",
