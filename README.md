@@ -164,6 +164,10 @@ return (
 ```
 
 
+## Demo
+
+[react-echarts-v3-demo](https://github.com/xlsdg/react-echarts-v3-demo)
+
 # License
 
 MIT
