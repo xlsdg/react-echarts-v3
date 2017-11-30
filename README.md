@@ -12,119 +12,150 @@
 
 ## Installation
 
-```
+```bash
 $ npm install --save echarts react-echarts-v3
 ```
 
 
 ## Usage
 
-``` javascript
-import IECharts from 'react-echarts-v3/src/full.js';
+0. Change webpack config
 
-const option = {
-  title: {
-    text: 'ECharts 入门示例'
-  },
-  tooltip: {},
-  xAxis: {
-    data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-  },
-  yAxis: {},
-  series: [{
-    name: '销量',
-    type: 'bar',
-    data: [5, 20, 36, 10, 10, 20]
-  }]
-};
+    For webpack 1.x:
 
-const onEvents = {
-  'click': function(params) {
-    // the 'this' variable can get echarts instance
-    console.log(params);
-  }
-};
+    ```diff
+          {
+            test: /\.jsx?$/,
+            loader: 'babel',
+            include: [
+    -          path.join(prjRoot, 'src')
+    +          path.join(prjRoot, 'src'),
+    +          path.join(prjRoot, 'node_modules/react-echarts-v3/src')
+            ],
+    -        exclude: /node_modules/
+    +        exclude: /node_modules(?![\\/]react-echarts-v3[\\/]src[\\/])/
+          },
+    ```
 
-return (
-  <IECharts option={option} onEvents={onEvents} />
-);
-```
+    For webpack 2.x+:
 
-OR
+    ```diff
+          {
+            test: /\.jsx?$/,
+            loader: 'babel-loader',
+    -       include: [resolve('src'), resolve('test')]
+    +       include: [resolve('src'), resolve('test'), resolve('node_modules/react-echarts-v3/src')]
+          }
+    ```
 
-``` javascript
-import IECharts from 'react-echarts-v3/src/lite.js';
+1. Import all charts and components
 
-// Import all charts and components
-// require('echarts/lib/chart/line');
-require('echarts/lib/chart/bar');
-// require('echarts/lib/chart/pie');
-// require('echarts/lib/chart/scatter');
-// require('echarts/lib/chart/radar');
+    ```javascript
+    import IECharts from 'react-echarts-v3/src/full.js';
 
-// require('echarts/lib/chart/map');
-// require('echarts/lib/chart/treemap');
-// require('echarts/lib/chart/graph');
-// require('echarts/lib/chart/gauge');
-// require('echarts/lib/chart/funnel');
-// require('echarts/lib/chart/parallel');
-// require('echarts/lib/chart/sankey');
-// require('echarts/lib/chart/boxplot');
-// require('echarts/lib/chart/candlestick');
-// require('echarts/lib/chart/effectScatter');
-// require('echarts/lib/chart/lines');
-// require('echarts/lib/chart/heatmap');
+    const option = {
+      title: {
+        text: 'ECharts 入门示例'
+      },
+      tooltip: {},
+      xAxis: {
+        data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+      },
+      yAxis: {},
+      series: [{
+        name: '销量',
+        type: 'bar',
+        data: [5, 20, 36, 10, 10, 20]
+      }]
+    };
 
-// require('echarts/lib/component/graphic');
-// require('echarts/lib/component/grid');
-// require('echarts/lib/component/legend');
-// require('echarts/lib/component/tooltip');
-// require('echarts/lib/component/polar');
-// require('echarts/lib/component/geo');
-// require('echarts/lib/component/parallel');
-// require('echarts/lib/component/singleAxis');
-// require('echarts/lib/component/brush');
+    const onEvents = {
+      'click': function(params) {
+        // the 'this' variable can get echarts instance
+        console.log(params);
+      }
+    };
 
-// require('echarts/lib/component/title');
+    return (
+      <IECharts option={option} onEvents={onEvents} />
+    );
+    ```
 
-// require('echarts/lib/component/dataZoom');
-// require('echarts/lib/component/visualMap');
+2. Import ECharts.js modules manually to reduce bundle size
 
-// require('echarts/lib/component/markPoint');
-// require('echarts/lib/component/markLine');
-// require('echarts/lib/component/markArea');
+    ```javascript
+    import IECharts from 'react-echarts-v3/src/lite.js';
 
-// require('echarts/lib/component/timeline');
-// require('echarts/lib/component/toolbox');
+    // Import all charts and components
+    // require('echarts/lib/chart/line');
+    require('echarts/lib/chart/bar');
+    // require('echarts/lib/chart/pie');
+    // require('echarts/lib/chart/scatter');
+    // require('echarts/lib/chart/radar');
 
-// require('zrender/lib/vml/vml');
+    // require('echarts/lib/chart/map');
+    // require('echarts/lib/chart/treemap');
+    // require('echarts/lib/chart/graph');
+    // require('echarts/lib/chart/gauge');
+    // require('echarts/lib/chart/funnel');
+    // require('echarts/lib/chart/parallel');
+    // require('echarts/lib/chart/sankey');
+    // require('echarts/lib/chart/boxplot');
+    // require('echarts/lib/chart/candlestick');
+    // require('echarts/lib/chart/effectScatter');
+    // require('echarts/lib/chart/lines');
+    // require('echarts/lib/chart/heatmap');
+
+    // require('echarts/lib/component/graphic');
+    // require('echarts/lib/component/grid');
+    // require('echarts/lib/component/legend');
+    // require('echarts/lib/component/tooltip');
+    // require('echarts/lib/component/polar');
+    // require('echarts/lib/component/geo');
+    // require('echarts/lib/component/parallel');
+    // require('echarts/lib/component/singleAxis');
+    // require('echarts/lib/component/brush');
+
+    // require('echarts/lib/component/title');
+
+    // require('echarts/lib/component/dataZoom');
+    // require('echarts/lib/component/visualMap');
+
+    // require('echarts/lib/component/markPoint');
+    // require('echarts/lib/component/markLine');
+    // require('echarts/lib/component/markArea');
+
+    // require('echarts/lib/component/timeline');
+    // require('echarts/lib/component/toolbox');
+
+    // require('zrender/lib/vml/vml');
 
 
-const option = {
-  title: {
-    text: 'ECharts 入门示例'
-  },
-  tooltip: {},
-  xAxis: {
-    data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-  },
-  yAxis: {},
-  series: [{
-    name: '销量',
-    type: 'bar',
-    data: [5, 20, 36, 10, 10, 20]
-  }]
-};
+    const option = {
+      title: {
+        text: 'ECharts 入门示例'
+      },
+      tooltip: {},
+      xAxis: {
+        data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+      },
+      yAxis: {},
+      series: [{
+        name: '销量',
+        type: 'bar',
+        data: [5, 20, 36, 10, 10, 20]
+      }]
+    };
 
-return (
-  <IECharts option={option} />
-);
-```
+    return (
+      <IECharts option={option} />
+    );
+    ```
 
 
 ## propTypes
 
-``` javascript
+```javascript
     className:    React.PropTypes.string,
     style:        React.PropTypes.object,
     group:        React.PropTypes.string,
@@ -145,7 +176,7 @@ return (
 
 ## defaultProps
 
-``` javascript
+```javascript
     className: 'react-echarts',
     style: { width: '100%', height: '100%' },
     notMerge: false,
