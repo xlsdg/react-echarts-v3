@@ -1,9 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import _isEqual from 'lodash.isequal';
-import _debounce from 'lodash.debounce';
-// import Resize from 'element-resize-event';
+import Debounce from 'lodash.debounce';
 import Resize from 'element-resize-detector';
 
 
@@ -39,15 +37,14 @@ function wrapECharts(ECharts) {
         }
       }
     }
-    shouldComponentUpdate(nextProps, nextState) {
-      const that = this;
-      // console.log('shouldComponentUpdate', that.props, nextProps, that.state, nextState);
-      return (!that.state.instance
-        || !_isEqual(nextProps.option, that.props.option)
-        || (nextProps.group !== that.props.group)
-      );
-      // return (that.state.init || !_isEqual(nextProps.option, that.props.option));
-    }
+    // shouldComponentUpdate(nextProps, nextState) {
+    //   const that = this;
+    //   // console.log('shouldComponentUpdate', that.props, nextProps, that.state, nextState);
+    //   return (!that.state.instance
+    //     || (nextProps.group !== that.props.group)
+    //   );
+    //   // return (that.state.init || !_isEqual(nextProps.option, that.props.option));
+    // }
     // componentWillUpdate(nextProps, nextState) {
       // const that = this;
       // console.log('componentWillUpdate', that.props, nextProps, that.state, nextState);
@@ -94,9 +91,8 @@ function wrapECharts(ECharts) {
         }
         instance.group = that.props.group;
         that._bind(instance);
-        // Resize(dom, that._resize);
         let resize = null;
-        let fnResize = that.state.fnResize || _debounce(that._resize, 250, {
+        let fnResize = that.state.fnResize || Debounce(that._resize, 250, {
           'leading': true,
           'trailing': true
         });
