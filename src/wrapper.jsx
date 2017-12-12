@@ -105,8 +105,14 @@ function wrapECharts(ECharts) {
             strategy: 'scroll' // <- For ultra performance.
           });
           resize.listenTo(dom, function(element) {
+            const width = element.offsetWidth;
+            const height = element.offsetHeight;
             // that._resize();
-            fnResize();
+            fnResize({
+              width,
+              height,
+              silent: false
+            });
           });
         }
         that.props.onReady(instance, ECharts);
@@ -127,13 +133,16 @@ function wrapECharts(ECharts) {
       //   instance.setOption(that.props.option, that.props.notMerge, that.props.lazyUpdate);
       // }
     }
-    _resize = () => {
+    _resize = (opts) => {
       const that = this;
       // console.log('_resize');
-      that.state.instance.resize();
+      const width = opts && opts.width;
+      const height = opts && opts.height;
+      that.props.onResize(width, height);
+      that.state.instance.resize(opts);
       // const instance = that._getInstance()
       // if (instance) {
-      //   instance.resize();
+      //   instance.resize(opts);
       // }
     }
     _getInstance = () => {
@@ -182,6 +191,7 @@ function wrapECharts(ECharts) {
     loading: PropTypes.bool,
     optsLoading: PropTypes.object,
     onReady: PropTypes.func,
+    onResize: PropTypes.func,
     resizable: PropTypes.bool,
     onEvents: PropTypes.object
   };
@@ -195,6 +205,7 @@ function wrapECharts(ECharts) {
     notMerge: false,
     lazyUpdate: false,
     onReady: function(instance) {},
+    onResize: function(width, height) {},
     loading: false,
     resizable: false,
     onEvents: {}

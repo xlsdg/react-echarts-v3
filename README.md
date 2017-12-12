@@ -165,6 +165,7 @@ $ npm install --save echarts react-echarts-v3
     notMerge:     React.PropTypes.bool,
     lazyUpdate:   React.PropTypes.bool,
     onReady:      React.PropTypes.func,
+    onResize:     React.PropTypes.func,
     loading:      React.PropTypes.bool,
     resizable:    React.PropTypes.bool,
     optsLoading:  React.PropTypes.object,
@@ -182,6 +183,7 @@ $ npm install --save echarts react-echarts-v3
     notMerge: false,
     lazyUpdate: false,
     onReady: function(instance) {},
+    onResize: function(width, height) {},
     loading: false,
     resizable: false,
     optsLoading: {
