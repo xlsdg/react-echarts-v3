@@ -54,7 +54,7 @@ function wrapECharts(ECharts) {
       // console.log('componentDidUpdate', prevProps, that.props, prevState, that.state);
       if (that.props.option) {
         that._update();
-        that._resize();
+        // that._resize();
       }
     }
     componentWillUnmount() {
@@ -178,7 +178,10 @@ function wrapECharts(ECharts) {
   IECharts.propTypes = {
     className: PropTypes.string,
     style: PropTypes.object,
-    theme: PropTypes.string,
+    theme: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object
+    ]),
     group: PropTypes.string,
     option: PropTypes.object.isRequired,
     initOpts: PropTypes.object,

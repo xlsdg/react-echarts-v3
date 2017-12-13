@@ -156,20 +156,20 @@ $ npm install --save echarts react-echarts-v3
 ## propTypes
 
 ```javascript
-    className:    React.PropTypes.string,
-    style:        React.PropTypes.object,
-    group:        React.PropTypes.string,
-    theme:        React.PropTypes.string,
-    initOpts:     React.PropTypes.object,
-    option:       React.PropTypes.object.isRequired,
-    notMerge:     React.PropTypes.bool,
-    lazyUpdate:   React.PropTypes.bool,
-    onReady:      React.PropTypes.func,
-    onResize:     React.PropTypes.func,
-    loading:      React.PropTypes.bool,
-    resizable:    React.PropTypes.bool,
-    optsLoading:  React.PropTypes.object,
-    onEvents:     React.PropTypes.object
+    className:    PropTypes.string,
+    style:        PropTypes.object,
+    group:        PropTypes.string,
+    theme:        PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    initOpts:     PropTypes.object,
+    option:       PropTypes.object.isRequired,
+    notMerge:     PropTypes.bool,
+    lazyUpdate:   PropTypes.bool,
+    onReady:      PropTypes.func,
+    onResize:     PropTypes.func,
+    loading:      PropTypes.bool,
+    resizable:    PropTypes.bool,
+    optsLoading:  PropTypes.object,
+    onEvents:     PropTypes.object
 ```
 
 [Read More](http://echarts.baidu.com/option.html)
