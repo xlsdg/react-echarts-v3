@@ -1,12 +1,11 @@
+import _ from 'lodash';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import Debounce from 'lodash.debounce';
 import Resize from 'element-resize-detector';
 
-
 function wrapECharts(ECharts) {
-  class IECharts extends React.Component {
+  class IEcharts extends React.Component {
     constructor(props) {
       // console.log('constructor', props);
       super(props);
@@ -92,9 +91,9 @@ function wrapECharts(ECharts) {
         instance.group = that.props.group;
         that._bind(instance);
         let resize = null;
-        let fnResize = that.state.fnResize || Debounce(that._resize, 250, {
-          'leading': true,
-          'trailing': true
+        let fnResize = that.state.fnResize || _.throttle(that._resize, 250, {
+          leading: true,
+          trailing: true
         });
         if (that.props.resizable) {
           resize = that.state.resize || Resize({
@@ -175,7 +174,7 @@ function wrapECharts(ECharts) {
     }
   }
 
-  IECharts.propTypes = {
+  IEcharts.propTypes = {
     className: PropTypes.string,
     style: PropTypes.object,
     theme: PropTypes.oneOfType([
@@ -195,7 +194,7 @@ function wrapECharts(ECharts) {
     onEvents: PropTypes.object
   };
 
-  IECharts.defaultProps = {
+  IEcharts.defaultProps = {
     className: 'react-echarts',
     style: {
       width: '100%',
@@ -210,7 +209,7 @@ function wrapECharts(ECharts) {
     onEvents: {}
   };
 
-  return IECharts;
+  return IEcharts;
 }
 
 export default wrapECharts;

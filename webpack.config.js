@@ -1,9 +1,10 @@
 var path = require('path')
 var webpack = require('webpack');
+var LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 
 module.exports = {
   entry: './src/full.js',
-  // devtool: 'source-map',
+  devtool: 'source-map',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'react-echarts.js',
@@ -38,24 +39,25 @@ module.exports = {
     }
   },
   plugins: [
-    new webpack.optimize.ModuleConcatenationPlugin(),
+    // new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production')
       }
     }),
-    new webpack.SourceMapDevToolPlugin({
-      filename: '[file].map'
+    new LodashModuleReplacementPlugin({
+      collections: true,
+      paths: true
     }),
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true,
       compress: {
         warnings: false
       }
-    }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true
     })
+    // new webpack.LoaderOptionsPlugin({
+    //   minimize: true
+    // })
   ],
   performance: {
     hints: false
@@ -65,11 +67,7 @@ module.exports = {
       test: /\.jsx?$/,
       exclude: /node_modules/,
       use: {
-        loader: 'babel-loader',
-        options: {
-          presets: ['es2015', 'stage-0', 'react'],
-          comments: false
-        }
+        loader: 'babel-loader'
       }
     }]
   },

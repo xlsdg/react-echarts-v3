@@ -51,7 +51,7 @@ $ npm install --save echarts react-echarts-v3
 1. Import all charts and components
 
     ```javascript
-    import IECharts from 'react-echarts-v3/src/full.js';
+    import IEcharts from 'react-echarts-v3/src/full.js';
 
     const option = {
       title: {
@@ -77,14 +77,14 @@ $ npm install --save echarts react-echarts-v3
     };
 
     return (
-      <IECharts option={option} onEvents={onEvents} />
+      <IEcharts option={option} onEvents={onEvents} />
     );
     ```
 
 2. Import ECharts.js modules manually to reduce bundle size
 
     ```javascript
-    import IECharts from 'react-echarts-v3/src/lite.js';
+    import IEcharts from 'react-echarts-v3/src/lite.js';
 
     // Import all charts and components
     // require('echarts/lib/chart/line');
@@ -148,7 +148,7 @@ $ npm install --save echarts react-echarts-v3
     };
 
     return (
-      <IECharts option={option} />
+      <IEcharts option={option} />
     );
     ```
 
