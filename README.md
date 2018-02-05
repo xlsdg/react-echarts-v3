@@ -182,7 +182,7 @@ $ npm install --save echarts react-echarts-v3
     style: { width: '100%', height: '100%' },
     notMerge: false,
     lazyUpdate: false,
-    onReady: function(instance) {},
+    onReady: function(instance, ECharts) {},
     onResize: function(width, height) {},
     loading: false,
     resizable: false,

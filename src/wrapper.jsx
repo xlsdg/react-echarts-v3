@@ -202,7 +202,7 @@ function wrapECharts(ECharts) {
     },
     notMerge: false,
     lazyUpdate: false,
-    onReady: function(instance) {},
+    onReady: function(instance, ECharts) {},
     onResize: function(width, height) {},
     loading: false,
     resizable: false,
