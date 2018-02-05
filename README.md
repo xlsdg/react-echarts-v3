@@ -1,13 +1,13 @@
-# react-echarts-v3
+# react-echarts-v3 [![npm](https://img.shields.io/npm/v/react-echarts-v3.svg)](https://www.npmjs.com/package/react-echarts-v3) [![react](https://img.shields.io/badge/react-16.x-brightgreen.svg)](https://reactjs.org/) [![echarts3](https://img.shields.io/badge/echarts-3.x-brightgreen.svg)](http://echarts.baidu.com/)
 
-> React.js component wrap for ECharts.js(v3.x+)
+> [React.js](https://reactjs.org/) `v16.x+` component wrap for [ECharts.js](http://echarts.baidu.com/) `v3.x+`
 
 
 ## Feature
 
-轻量，更高的效率，支持按需引入 ECharts 的图表和组件，配合[react-grid-layout](https://github.com/STRML/react-grid-layout)支持拖拽布局。
-
-![Screen.gif](screen.gif)
+1. Lightweight, efficient, on-demand binding events;
+2. Support for importing ECharts.js charts and components on demand;
+3. Support component resize event auto update view;
 
 
 ## Installation
