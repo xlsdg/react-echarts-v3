@@ -66,7 +66,9 @@ function wrapECharts(ECharts) {
       if (that.state.fnResize && that.state.fnResize.cancel) {
         that.state.fnResize.cancel();
       }
-      that.state.instance.dispose();
+      if (that.state.instance) {
+        that.state.instance.dispose();
+      }
       // const instance = that._getInstance()
       // if (instance) {
       //   instance.dispose();
@@ -134,7 +136,9 @@ function wrapECharts(ECharts) {
       const width = opts && opts.width;
       const height = opts && opts.height;
       that.props.onResize(width, height);
-      that.state.instance.resize(opts);
+      if (that.state.instance){
+        that.state.instance.resize(opts);
+      }
       // const instance = that._getInstance()
       // if (instance) {
       //   instance.resize(opts);
